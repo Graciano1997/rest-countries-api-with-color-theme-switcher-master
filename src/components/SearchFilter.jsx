@@ -1,6 +1,12 @@
+import style from '../style/countries.module.css';
+
 const SearchFilter = () => (
-  <section>
-    <h1>Iam the SearchFilter</h1>
+  <section className={style.searchContainer}>
+    <div>
+      <span>gra</span>
+      <input type="text" name="country" id="country" placeholder="Search for a country..." />
+    </div>
+    <div><p>a</p></div>
   </section>
 );
 
