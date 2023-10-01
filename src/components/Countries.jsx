@@ -15,7 +15,6 @@ const Countries = () => {
       dispatch(getCountries());
     }
   }, [dispatch]);
-  console.log(countries);
   if (isLoading) {
     return (
       <h1>Loading</h1>

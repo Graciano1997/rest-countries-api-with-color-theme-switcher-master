@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const initialState = {
   countries: [],
-  selectedCountry: 'Gra',
+  selectedCountry: '',
+  country: null,
   isLoading: false,
   hasError: false,
   errorMessage: '',
@@ -13,6 +14,11 @@ const countryUrl = 'https://restcountries.com/v3.1/all';
 
 export const getCountries = createAsyncThunk('countries/getCountries', async () => {
   const result = await axios.get(countryUrl);
+  return result.data;
+});
+
+export const getCountry = createAsyncThunk('countries/getCountry', async (name) => {
+  const result = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
   return result.data;
 });
 
@@ -33,6 +39,8 @@ export const countriesSlice = createSlice(
       builder
         .addCase(getCountries.pending, (state) => {
           state.isLoading = true;
+          state.hasError = false;
+          state.errorMessage = '';
         })
         .addCase(getCountries.rejected, (state, action) => {
           state.isLoading = false;
@@ -53,6 +61,35 @@ export const countriesSlice = createSlice(
             };
             state.countries.push(countryInfo);
           });
+          state.isLoading = false;
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountry.rejected, (state, action) => {
+          state.isLoading = false;
+          state.hasError = true;
+          state.errorMessage = action.error.message;
+        })
+        .addCase(getCountry.pending, (state) => {
+          state.isLoading = true;
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountry.fulfilled, (state, action) => {
+          const country = action.payload[0];
+          const countryInfo = {
+            name: country.name.common,
+            population: country.population,
+            capital: country.capital,
+            region: country.region,
+            flag: country.flags.svg,
+            alt: country.flags.alt,
+            tld: country.tld,
+            subregion: country.subregion,
+            borders: country.borders,
+          };
+          state.country = countryInfo;
+          console.log(state.country);
           state.isLoading = false;
           state.hasError = false;
           state.errorMessage = '';
