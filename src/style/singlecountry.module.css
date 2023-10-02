@@ -1,8 +1,14 @@
 .countryItemContainer {
   display: flex;
+  flex-direction: column;
   margin: 0 5rem 0rem 5rem;
   gap: 8rem;
   font-size: 16px;
+}
+.countryItemDetails {
+  display: flex;
+  gap: 4rem;
+
 }
 
 .countryFlag {

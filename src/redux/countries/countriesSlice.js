@@ -27,10 +27,10 @@ export const getCountry = createAsyncThunk('countries/getCountry', async (name) 
   return result.data;
 });
 
-export const getCountriesNames = async (codes) => {
-  const result = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}`);
-  return result.data;
-};
+// export const getCountriesNames = async (codes) => {
+//   const result = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}`);
+//   return result.data;
+// };
 
 export const countriesSlice = createSlice(
   {
@@ -87,10 +87,6 @@ export const countriesSlice = createSlice(
         })
         .addCase(getCountry.fulfilled, (state, action) => {
           const country = action.payload[0];
-          let countryBorders = [];
-          if (country.borders !== undefined) {
-            countryBorders = country.borders;
-          }
           const countryInfo = {
             name: country.name.common,
             population: country.population,
@@ -100,27 +96,13 @@ export const countriesSlice = createSlice(
             alt: country.flags.alt,
             tld: country.tld,
             subregion: country.subregion,
-            borders: countryBorders,
+            borders: country.borders,
           };
-          const allCountries = getCountriesNames(countryInfo.borders);
           state.country = countryInfo;
-          // allCountries.map((country) => (
-          //   state.borders.push(country.name.common)));
-          console.log(allCountries);
           state.isLoading = false;
           state.hasError = false;
           state.errorMessage = '';
         });
-      // .addCase(getCountriesNames.fulfilled, (state, action) => {
-      //   const allCountries = action.payload;
-      //   allCountries.forEach((country) => {
-      //     state.borders.push(country.name.common);
-      //     console.log(country.name.common);
-      //   });
-      //   state.isLoading = false;
-      //   state.hasError = false;
-      //   state.errorMessage = '';
-      // });
     },
   },
 );
