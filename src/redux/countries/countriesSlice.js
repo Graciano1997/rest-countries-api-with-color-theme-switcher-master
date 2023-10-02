@@ -3,8 +3,9 @@ import axios from 'axios';
 
 const initialState = {
   countries: [],
+  borders: [],
   selectedCountry: '',
-  country: null,
+  country: '',
   isLoading: false,
   hasError: false,
   errorMessage: '',
@@ -13,8 +14,12 @@ const initialState = {
 const countryUrl = 'https://restcountries.com/v3.1/all';
 
 export const getCountries = createAsyncThunk('countries/getCountries', async () => {
-  const result = await axios.get(countryUrl);
-  return result.data;
+  try {
+    const result = await axios.get(countryUrl);
+    return result.data;
+  } catch (error) {
+    return error.message;
+  }
 });
 
 export const getCountry = createAsyncThunk('countries/getCountry', async (name) => {
@@ -22,13 +27,18 @@ export const getCountry = createAsyncThunk('countries/getCountry', async (name) 
   return result.data;
 });
 
+export const getCountriesNames = async (codes) => {
+  const result = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}`);
+  return result.data;
+};
+
 export const countriesSlice = createSlice(
   {
     initialState,
     name: 'countries',
     reducers: {
       resetCountries: (state) => {
-        state.countries = [];
+        state.borders = [];
       },
       selectCountry: (state, action) => {
         state.selectedCountry = action.payload;
@@ -77,6 +87,10 @@ export const countriesSlice = createSlice(
         })
         .addCase(getCountry.fulfilled, (state, action) => {
           const country = action.payload[0];
+          let countryBorders = [];
+          if (country.borders !== undefined) {
+            countryBorders = country.borders;
+          }
           const countryInfo = {
             name: country.name.common,
             population: country.population,
@@ -86,16 +100,28 @@ export const countriesSlice = createSlice(
             alt: country.flags.alt,
             tld: country.tld,
             subregion: country.subregion,
-            borders: country.borders,
+            borders: countryBorders,
           };
+          const allCountries = getCountriesNames(countryInfo.borders);
           state.country = countryInfo;
-          console.log(state.country);
+          // allCountries.map((country) => (
+          //   state.borders.push(country.name.common)));
+          console.log(allCountries);
           state.isLoading = false;
           state.hasError = false;
           state.errorMessage = '';
         });
+      // .addCase(getCountriesNames.fulfilled, (state, action) => {
+      //   const allCountries = action.payload;
+      //   allCountries.forEach((country) => {
+      //     state.borders.push(country.name.common);
+      //     console.log(country.name.common);
+      //   });
+      //   state.isLoading = false;
+      //   state.hasError = false;
+      //   state.errorMessage = '';
+      // });
     },
-
   },
 );
 

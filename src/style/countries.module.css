@@ -20,7 +20,7 @@
 .countryDetails {
   padding: 2rem 1.5rem 0 1.5rem;
   text-align: left;
-  z-index: 100;
+  gap: 2rem;
 }
 
 .countryDetails div {
@@ -53,5 +53,4 @@ z-index: 100;
 }
 .searchContainer input {
   padding: 0.7rem;
-  
 }

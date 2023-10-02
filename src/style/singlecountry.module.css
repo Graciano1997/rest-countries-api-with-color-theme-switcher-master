@@ -1,0 +1,67 @@
+.countryItemContainer {
+  display: flex;
+  margin: 0 5rem 0rem 5rem;
+  gap: 8rem;
+  font-size: 16px;
+}
+
+.countryFlag {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.countryFlag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.countryDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.countryDetails {
+  display: flex;
+  gap: 8rem;
+  padding-top: 2rem;
+}
+
+.countryDetailsA,
+.countryDetailsB {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.countryDetailsA div,
+.countryDetailsB div {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding-top: 0.4rem;
+  align-items: center;
+}
+.countryBordersDescription{
+width: 20%;
+}
+.countryBorders {
+  margin-top: 4rem;
+  display: flex;
+}
+.countryBorderElements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.noneBorderCountry {
+  padding-left: 0.5rem;
+}
+
+.buttonItem {
+  padding: 0.1rem 2rem 0.1rem 2rem;
+  cursor: pointer;
+}

@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { resetCountries, selectCountry } from '../redux/countries/countriesSlice';
 import style from '../style/countries.module.css';
-import { selectCountry } from '../redux/countries/countriesSlice';
 
 const Country = ({
   name, flag, region, population, capital, alt,
 }) => {
   const dispatch = useDispatch();
   const navegate = useNavigate();
-  const handlerClick = () => {
+  const handlerClick = (name) => {
+    dispatch(resetCountries());
     dispatch(selectCountry(name));
     navegate('/countryDetails');
   };
@@ -18,10 +19,12 @@ const Country = ({
     <div
       className={style.countryContainer}
       role="button"
-      onKeyDown={handlerClick}
+      onKeyDown={() => {
+        handlerClick(name);
+      }}
       tabIndex={0}
       onClick={() => {
-        handlerClick();
+        handlerClick(name);
       }}
     >
       <div className={style.countryFlag}>
@@ -56,4 +59,5 @@ Country.propTypes = {
   population: PropTypes.number.isRequired,
   capital: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 export default Country;
