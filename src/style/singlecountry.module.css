@@ -1,20 +1,21 @@
 .countryItemContainer {
   display: flex;
   flex-direction: column;
-  margin: 0 5rem 0rem 5rem;
+  margin: 3rem 5rem 0rem 5rem;
   gap: 8rem;
   font-size: 16px;
 }
 .countryItemDetails {
-  display: flex;
-  gap: 4rem;
-
+  display:grid;
+  grid-template-columns: 40fr 60fr;
+  grid-template-rows: 100fr;
+  gap: 8rem;
+  margin-top: -2rem;
 }
 
 .countryFlag {
   display: flex;
   flex-direction: column;
-  width: 45%;
 }
 
 .countryFlag img {
@@ -54,8 +55,10 @@
 width: 20%;
 }
 .countryBorders {
-  margin-top: 4rem;
-  display: flex;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 15fr 80fr;
+  align-items: center;
 }
 .countryBorderElements {
   display: flex;
@@ -68,6 +71,14 @@ width: 20%;
 }
 
 .buttonItem {
-  padding: 0.1rem 2rem 0.1rem 2rem;
+  padding: 0.5rem 2rem 0.5rem 2rem;
   cursor: pointer;
+  background-color: hsl(209, 23%, 22%);
+  border: none;
+  color: hsl(0, 0%, 100%);
+}
+
+.countryLanguage {
+  display: flex;
+  align-items: baseline;
 }

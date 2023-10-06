@@ -42,7 +42,6 @@ export const countriesSlice = createSlice(
       },
       selectCountry: (state, action) => {
         state.selectedCountry = action.payload;
-        console.log(state.selectedCountry);
       },
     },
     extraReducers: (builder) => {
@@ -87,17 +86,35 @@ export const countriesSlice = createSlice(
         })
         .addCase(getCountry.fulfilled, (state, action) => {
           const country = action.payload[0];
+          const countryLanguages = [];
+          const currencies = [];
+
+          Object.keys(country.languages).forEach((lang) => {
+            countryLanguages.push(country.languages[lang]);
+          });
+          const nativeNames = [];
+          Object.keys(country.name.nativeName).forEach((native) => {
+            nativeNames.push(country.name.nativeName[native].common);
+          });
+
+          Object.keys(country.currencies).forEach((name) => {
+            currencies.push(country.currencies[name].name);
+          });
           const countryInfo = {
             name: country.name.common,
             population: country.population,
             capital: country.capital,
             region: country.region,
             flag: country.flags.svg,
+            languages: countryLanguages,
             alt: country.flags.alt,
             tld: country.tld,
             subregion: country.subregion,
             borders: country.borders,
+            nativeName: nativeNames[0],
+            currency: currencies[0],
           };
+          console.log(nativeNames);
           state.country = countryInfo;
           state.isLoading = false;
           state.hasError = false;

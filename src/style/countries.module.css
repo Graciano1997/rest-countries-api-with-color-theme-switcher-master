@@ -51,6 +51,21 @@ z-index: 100;
   justify-content: space-between;
   margin: 0 5rem 4rem 5rem;
 }
+.searchContainer input,
+.searchContainer select {
+  padding: 0.7rem;
+  border-radius: 4px;
+}
+.searchContainer select {
+  width: 15rem;
+}
+
 .searchContainer input {
   padding: 0.7rem;
+  width: 30rem;
 }
+
+/* .searchContainer input option {
+  padding: 0.7rem;
+  padding-top: 2%;
+} */

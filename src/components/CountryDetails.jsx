@@ -14,7 +14,7 @@ const CountryDetails = () => {
   const navegate = useNavigate();
   return (
     <section className={style.countryItemContainer}>
-      <div><button type="button" onClick={() => { navegate('/'); }}>Back</button></div>
+      <div><button type="button" className={style.buttonItem} onClick={() => { navegate('/'); }}>Back</button></div>
       <div className={style.countryItemDetails}>
         <div className={style.countryFlag}>
           <img src={country.flag} alt={country.alt} />
@@ -27,7 +27,7 @@ const CountryDetails = () => {
                 <h5>
                   Native Name:
                 </h5>
-                <p>{country.population}</p>
+                <p>{country.nativeName}</p>
               </div>
               <div>
                 <h5>
@@ -59,18 +59,18 @@ const CountryDetails = () => {
                 <h5>
                   Currencies:
                 </h5>
-                <p>{country.tld}</p>
+                <p>{country.currency}</p>
               </div>
-              <div>
+              <div className={style.countryLanguage}>
                 <h5>
                   Languages:
                 </h5>
-                <p>{country.tld}</p>
+                <p>{(country.languages !== undefined) && (country.languages.toString())}</p>
               </div>
             </div>
           </div>
           <div className={style.countryBorders}>
-            <div className={style.countryBordersDescription}>
+            <div>
               <h5>Border Countries:</h5>
             </div>
             {(country.borders !== undefined) && (
