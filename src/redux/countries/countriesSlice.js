@@ -13,6 +13,15 @@ const initialState = {
 
 const countryUrl = 'https://restcountries.com/v3.1/all';
 
+export const getCountriesRegion = createAsyncThunk('countries/getCountriesRegion', async (region) => {
+  try {
+    const result = await axios.get(`https://restcountries.com/v3.1/region/${region}`);
+    return result.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
 export const getCountries = createAsyncThunk('countries/getCountries', async () => {
   try {
     const result = await axios.get(countryUrl);
@@ -40,6 +49,9 @@ export const countriesSlice = createSlice(
       resetCountries: (state) => {
         state.borders = [];
       },
+      resetAllCountries: (state) => {
+        state.countries = [];
+      },
       selectCountry: (state, action) => {
         state.selectedCountry = action.payload;
       },
@@ -56,7 +68,35 @@ export const countriesSlice = createSlice(
           state.hasError = true;
           state.errorMessage = action.error.message;
         })
+        .addCase(getCountriesRegion.pending, (state) => {
+          state.isLoading = true;
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountriesRegion.rejected, (state, action) => {
+          state.isLoading = false;
+          state.hasError = true;
+          state.errorMessage = action.error.message;
+        })
         .addCase(getCountries.fulfilled, (state, action) => {
+          const allCountries = action.payload;
+          allCountries.forEach((country) => {
+            const capitalCountry = country.capital;
+            const countryInfo = {
+              name: country.name.common,
+              population: country.population,
+              capital: capitalCountry,
+              region: country.region,
+              flag: country.flags.svg,
+              alt: country.flags.alt,
+            };
+            state.countries.push(countryInfo);
+          });
+          state.isLoading = false;
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountriesRegion.fulfilled, (state, action) => {
           const allCountries = action.payload;
           allCountries.forEach((country) => {
             const capitalCountry = country.capital;
@@ -125,4 +165,4 @@ export const countriesSlice = createSlice(
 );
 
 export default countriesSlice.reducer;
-export const { resetCountries, selectCountry } = countriesSlice.actions;
+export const { resetCountries, selectCountry, resetAllCountries } = countriesSlice.actions;
