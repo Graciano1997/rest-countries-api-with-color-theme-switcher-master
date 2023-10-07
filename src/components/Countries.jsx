@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCountries } from '../redux/countries/countriesSlice';
-import SearchFilter from './SearchFilter';
 import Country from './Country';
 import style from '../style/countries.module.css';
+import SearchFilter from './SearchFilter';
 
 const Countries = () => {
   const dispatch = useDispatch();

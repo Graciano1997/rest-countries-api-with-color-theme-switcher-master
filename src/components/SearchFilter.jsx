@@ -1,17 +1,30 @@
 import { useDispatch } from 'react-redux';
-import { getCountriesRegion, resetAllCountries } from '../redux/countries/countriesSlice';
+import {
+  getCountriesRegion, resetAllCountries, getCountryItem, getCountries,
+} from '../redux/countries/countriesSlice';
 import style from '../style/countries.module.css';
 
 const SearchFilter = () => {
   const dispatch = useDispatch();
   const handlerChange = (region) => {
-    dispatch(resetAllCountries());
-    dispatch(getCountriesRegion(region));
+    if (region !== 'all') {
+      dispatch(resetAllCountries());
+      dispatch(getCountriesRegion(region));
+    } else {
+      dispatch(resetAllCountries());
+      dispatch(getCountries());
+    }
+  };
+  const handlerKeyDown = (name) => {
+    if (name !== '') {
+      dispatch(resetAllCountries());
+      dispatch(getCountryItem(name));
+    }
   };
   return (
     <section className={style.searchContainer}>
       <div>
-        <input type="text" name="country" id="country" placeholder="Search for a country..." />
+        <input type="text" name="country" id="country" placeholder="Search for a country..." onKeyDown={(el) => { handlerKeyDown(el.target.value); }} />
       </div>
       <div>
         <select
@@ -21,7 +34,7 @@ const SearchFilter = () => {
             handlerChange(el.target.value);
           }}
         >
-          <option>Filter By Region</option>
+          <option value="all">Filter By Region</option>
           <option value="africa">Africa</option>
           <option value="america">America</option>
           <option value="asia">Asia</option>

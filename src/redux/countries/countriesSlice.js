@@ -36,10 +36,10 @@ export const getCountry = createAsyncThunk('countries/getCountry', async (name) 
   return result.data;
 });
 
-// export const getCountriesNames = async (codes) => {
-//   const result = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}`);
-//   return result.data;
-// };
+export const getCountryItem = createAsyncThunk('countries/getCountryItem', async (name) => {
+  const result = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
+  return result.data;
+});
 
 export const countriesSlice = createSlice(
   {
@@ -78,7 +78,34 @@ export const countriesSlice = createSlice(
           state.hasError = true;
           state.errorMessage = action.error.message;
         })
+        .addCase(getCountryItem.pending, (state) => {
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountryItem.rejected, (state, action) => {
+          state.isLoading = false;
+          state.hasError = true;
+          state.errorMessage = action.error.message;
+        })
         .addCase(getCountries.fulfilled, (state, action) => {
+          const allCountries = action.payload;
+          allCountries.forEach((country) => {
+            const capitalCountry = country.capital;
+            const countryInfo = {
+              name: country.name.common,
+              population: country.population,
+              capital: capitalCountry,
+              region: country.region,
+              flag: country.flags.svg,
+              alt: country.flags.alt,
+            };
+            state.countries.push(countryInfo);
+          });
+          state.isLoading = false;
+          state.hasError = false;
+          state.errorMessage = '';
+        })
+        .addCase(getCountryItem.fulfilled, (state, action) => {
           const allCountries = action.payload;
           allCountries.forEach((country) => {
             const capitalCountry = country.capital;
