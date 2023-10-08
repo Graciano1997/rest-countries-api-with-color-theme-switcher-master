@@ -55,14 +55,40 @@ z-index: 100;
 .searchContainer select {
   padding: 0.7rem;
   border-radius: 4px;
+  color: #fff;
+  border: none;
 }
 .searchContainer select {
   width: 15rem;
+  background-color: hsl(209, 23%, 22%);
+}
+.searchContainer select option{
+  cursor: pointer;
 }
 
 .searchContainer input {
   padding: 0.7rem;
-  width: 30rem;
+  width: 20rem;
+  background-color: transparent;
+}
+
+.searchContainer input:focus {
+  outline: none;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  background-color: hsl(209, 23%, 22%);
+  border-radius: 8px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.inputContainer button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
 }
 
 /* .searchContainer input option {

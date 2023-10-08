@@ -1,4 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import {
   getCountriesRegion, resetAllCountries, getCountryItem, getCountries,
 } from '../redux/countries/countriesSlice';
@@ -24,7 +26,10 @@ const SearchFilter = () => {
   };
   return (
     <section className={style.searchContainer}>
-      <div>
+      <div className={style.inputContainer}>
+        <button type="button">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
         <input type="text" name="country" id="country" placeholder="Search for a country..." onKeyDown={(el) => { handlerKeyDown(el.target.value); }} />
       </div>
       <div>
@@ -36,12 +41,12 @@ const SearchFilter = () => {
           }}
         >
           <option value="">Filter By Region</option>
-          <option value="africa">Africa</option>
-          <option value="america">America</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="oceania">Oceania</option>
-          <option value="all">world</option>
+          <option value="africa"><p>Africa</p></option>
+          <option value="america"><p>America</p></option>
+          <option value="asia"><p>Asia</p></option>
+          <option value="europe"><p>Europe</p></option>
+          <option value="oceania"><p>Oceania</p></option>
+          <option value="all"><p>World</p></option>
         </select>
       </div>
     </section>
