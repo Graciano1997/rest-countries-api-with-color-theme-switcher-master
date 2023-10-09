@@ -8,7 +8,6 @@
 .countryItemDetails {
   display:grid;
   grid-template-columns: 40fr 60fr;
-  grid-template-rows: 100fr;
   gap: 8rem;
   margin-top: -2rem;
 }
@@ -73,9 +72,7 @@ width: 20%;
 .buttonItem {
   padding: 0.5rem 2rem 0.5rem 2rem;
   cursor: pointer;
-  background-color: hsl(209, 23%, 22%);
   border: none;
-  color: hsl(0, 0%, 100%);
 }
 
 .countryLanguage {

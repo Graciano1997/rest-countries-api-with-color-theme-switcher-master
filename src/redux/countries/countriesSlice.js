@@ -9,6 +9,7 @@ const initialState = {
   isLoading: false,
   hasError: false,
   errorMessage: '',
+  theme: '',
 };
 
 const countryUrl = 'https://restcountries.com/v3.1/all';
@@ -48,6 +49,21 @@ export const countriesSlice = createSlice(
     reducers: {
       resetCountries: (state) => {
         state.borders = [];
+      },
+      getTheme: (state) => {
+        if (JSON.parse(localStorage.getItem('restCountryAppTheme'))) {
+          const theme = JSON.parse(localStorage.getItem('restCountryAppTheme'));
+          state.theme = theme;
+        } else {
+          state.theme = {
+            dark: true,
+            light: false,
+          };
+        }
+      },
+      setTheme: (state) => {
+        state.theme = { dark: !state.theme.dark, light: !state.theme.light };
+        localStorage.setItem('restCountryAppTheme', JSON.stringify(state.theme));
       },
       resetAllCountries: (state) => {
         state.countries = [];
@@ -192,4 +208,6 @@ export const countriesSlice = createSlice(
 );
 
 export default countriesSlice.reducer;
-export const { resetCountries, selectCountry, resetAllCountries } = countriesSlice.actions;
+export const {
+  resetCountries, selectCountry, resetAllCountries, getTheme, setTheme,
+} = countriesSlice.actions;

@@ -1,14 +1,19 @@
+@import url('./base.css');
+
 .headerContainer {
 display: flex;
 justify-content: space-between;
 margin: 0rem 0rem 2.5rem 0rem;
 padding: 1rem 5rem 1rem 5rem;
-background-color: hsl(209, 23%, 22%);
 align-items: center;
+font-size: var(--homePageSize);
 }
 
 .themeItem {
-  font-size: 16px;
   padding-right: 0.4rem;
   cursor: pointer;
+}
+
+.darkMode {
+  background-color: var(--);
 }

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { resetCountries, selectCountry } from '../redux/countries/countriesSlice';
 import style from '../style/countries.module.css';
+import '../App.css';
 
 const Country = ({
   name, flag, region, population, capital, alt,
@@ -15,9 +16,13 @@ const Country = ({
     navegate('/countryDetails');
   };
 
+  const { theme } = useSelector((state) => state.countries);
+
+  const themeMode = theme.dark ? 'darkModeElements' : 'lightModeElements';
+
   return (
     <div
-      className={style.countryContainer}
+      className={`${themeMode} ${style.countryContainer}`}
       role="button"
       onKeyDown={() => {
         handlerClick(name);

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { resetCountries, selectCountry, getCountry } from '../redux/countries/countriesSlice';
 import style from '../style/singlecountry.module.css';
+import '../App.css';
 
 const BorderCountry = ({ code }) => {
   const [countryName, setCountryName] = useState('');
@@ -16,6 +17,9 @@ const BorderCountry = ({ code }) => {
     dispatch(getCountry(name));
     navegate('/countryDetails');
   };
+  const { theme } = useSelector((state) => state.countries);
+
+  const themeMode = theme.dark ? 'darkModeElements' : 'lightModeElements';
 
   const getCountryName = async () => {
     const result = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
@@ -35,7 +39,7 @@ const BorderCountry = ({ code }) => {
   return (
     <button
       type="button"
-      className={style.buttonItem}
+      className={`${themeMode} ${style.buttonItem}`}
       onClick={(el) => {
         handlerClick(el.target.textContent);
       }}
