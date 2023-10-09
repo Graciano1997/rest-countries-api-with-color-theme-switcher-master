@@ -1,0 +1,136 @@
+.countriesContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 25fr);
+  grid-template-rows: repeat(1, auto);
+  column-gap: 4rem;
+  margin: 0 5rem 0 5rem;
+  font-size: 14px;
+}
+
+.countryContainer {
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-rows: repeat(2, 200px);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.countryDetails {
+  padding: 2rem 1.5rem 0 1.5rem;
+  text-align: left;
+  gap: 2rem;
+}
+
+.countryDetails div {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding-top: 0.4rem;
+}
+
+.countryDetails h3 {
+  padding-bottom: 1rem;
+}
+
+.countryFlag {
+  height: 200px;
+  z-index: 100;
+}
+
+.countryFlag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 5rem 4rem 5rem;
+}
+
+.searchContainer input,
+.searchContainer select {
+  padding: 0.7rem;
+  border-radius: 4px;
+  border: none;
+}
+
+.searchContainer select {
+  width: 15rem;
+}
+
+.searchContainer input {
+  padding: 0.7rem;
+  width: 26rem;
+  background-color: transparent;
+}
+
+.searchContainer input:focus {
+  outline: none;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.inputContainer button {
+  border: none;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 375px) and (max-width: 915px) {
+  .countriesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 0 0;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .countryContainer {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 80%;
+    height: 80%;
+  }
+
+  .countryFlag {
+    height: 80%;
+    z-index: 100;
+  }
+
+  .countryFlag img {
+    width: 100%;
+    height: 90%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  .countryDetails {
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    text-align: left;
+  }
+
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 2rem 4rem 2rem;
+  }
+
+  .inputContainer {
+    margin-bottom: 2.5rem;
+  }
+}

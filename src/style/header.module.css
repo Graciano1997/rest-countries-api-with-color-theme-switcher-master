@@ -1,0 +1,22 @@
+@import url('./base.css');
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0.5rem 0;
+  padding: 1rem 5rem 1rem 5rem;
+  align-items: center;
+  font-size: var(--homePageSize);
+}
+
+.themeItem {
+  padding-right: 0.4rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 375px) and (max-width: 915px) {
+  .headerContainer {
+    display: flex;
+    padding: 1rem 2rem 1rem 2rem;
+  }
+}

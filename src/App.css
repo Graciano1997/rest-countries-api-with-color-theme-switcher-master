@@ -1,0 +1,48 @@
+@import url('./style/base.css');
+
+.darkMode {
+  background-color: var(--darkModeBackground);
+}
+
+.darkModeElements {
+  background-color: var(--darkModeElements);
+  color: var(--darkModeColor);
+}
+
+.lightMode {
+  background-color: var(--lightModeBackground);
+}
+
+.lightModeElements {
+  background-color: var(--lightModeElements);
+  color: var(--lightModeColor);
+}
+
+.detailsDark {
+  color: var(--darkModeColor);
+}
+
+.detailsLight {
+  color: var(--lightModeColor);
+}
+
+/* @media screen and (min-width:922px) and (max-width:1440px) { */
+.App {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+/* } */
+
+@media screen and (min-width: 375px) and (max-width: 915px) {
+  .App {
+    position: fixed;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+  }
+}
