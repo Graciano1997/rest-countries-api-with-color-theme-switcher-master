@@ -15,7 +15,6 @@ function App() {
   }, [dispatch]);
   const { theme } = useSelector((state) => state.countries);
   const themeMode = theme.dark ? 'darkMode' : 'lightMode';
-  console.log(themeMode);
   return (
     <section className={`App ${themeMode}`}>
       <Header />

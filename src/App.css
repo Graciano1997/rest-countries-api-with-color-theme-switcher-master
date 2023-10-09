@@ -29,17 +29,20 @@
 
 /* @media screen and (min-width:922px) and (max-width:1440px) { */
 .App {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   overflow-y: scroll;
   height: 100%;
+  width: 100%;
 }
 /* } */
 
 @media screen and (min-width:375px) and (max-width:915px) {
   .App {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100%;
     width: 100%;
   }
 }

@@ -18,7 +18,7 @@ const Header = () => {
     <>
       <header className={themeMode}>
         <div className={style.headerContainer}>
-          <div><h2>Where in the World?</h2></div>
+          <div><h3>Where in the World?</h3></div>
           <div>
             {(theme.dark)
               && (
