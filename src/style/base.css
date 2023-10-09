@@ -2,12 +2,14 @@
   --darkModeElements: hsl(209, 23%, 22%);
   --darkModeBackground: hsl(207, 26%, 17%);
   --darkModeColor: hsl(0, 0%, 100%);
-  /* light mode*/
+
+  /* light mode */
   --lightModeElements: hsl(0, 0%, 100%);
   --lightModeBackground: hsl(0, 0%, 98%);
   --lightModeColor: hsl(200, 15%, 8%);
   --lightModeInput: hsl(0, 0%, 52%);
-  /*font_size*/
+
+  /* font_size */
   --homePageSize: 14px;
   --detailPageSize: 16px;
 }

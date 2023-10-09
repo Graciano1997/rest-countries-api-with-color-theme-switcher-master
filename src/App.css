@@ -9,7 +9,6 @@
   color: var(--darkModeColor);
 }
 
-
 .lightMode {
   background-color: var(--lightModeBackground);
 }
@@ -36,9 +35,10 @@
   height: 100%;
   width: 100%;
 }
+
 /* } */
 
-@media screen and (min-width:375px) and (max-width:915px) {
+@media screen and (min-width: 375px) and (max-width: 915px) {
   .App {
     position: fixed;
     overflow-y: scroll;
