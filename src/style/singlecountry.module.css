@@ -79,3 +79,7 @@ width: 20%;
   display: flex;
   align-items: baseline;
 }
+
+.arrowLeft {
+  padding-right: 8px;
+}

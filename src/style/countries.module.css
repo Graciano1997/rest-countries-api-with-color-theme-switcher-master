@@ -55,7 +55,6 @@ z-index: 100;
 .searchContainer select {
   padding: 0.7rem;
   border-radius: 4px;
-  color: #fff;
   border: none;
 }
 .searchContainer select {
@@ -87,7 +86,6 @@ z-index: 100;
 .inputContainer button {
   border: none;
   background-color: transparent;
-  color: #fff;
   cursor: pointer;
 }
 

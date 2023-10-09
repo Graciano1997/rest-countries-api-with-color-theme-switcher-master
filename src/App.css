@@ -1,10 +1,5 @@
 @import url('./style/base.css');
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .darkMode {
   background-color: var(--darkModeBackground);
 }
@@ -22,4 +17,18 @@
 .lightModeElements {
   background-color: var(--lightModeElements);
   color: var(--lightModeColor);
+}
+
+.detailsDark {
+  color: var(--darkModeColor);
+}
+
+.detailsLight {
+  color: var(--lightModeColor);
+}
+
+.App {
+  position: fixed;
+  overflow-y: scroll;
+  height: 100%;
 }

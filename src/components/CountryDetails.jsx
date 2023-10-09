@@ -1,21 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { getCountry } from '../redux/countries/countriesSlice';
 import BorderCountry from './BorderCountry';
 import style from '../style/singlecountry.module.css';
+import '../App.css';
 
 const CountryDetails = () => {
   const dispatch = useDispatch();
-  const { selectedCountry, country } = useSelector((state) => state.countries);
+  const { selectedCountry, country, theme } = useSelector((state) => state.countries);
   useEffect(() => {
     dispatch(getCountry(selectedCountry));
   }, [dispatch]);
   const navegate = useNavigate();
+  const themeMode = theme.dark ? 'darkModeElements' : 'lightModeElements';
+  const themeModeDetails = theme.dark ? 'detailsDark' : 'detailsLight';
+
   return (
     <section className={style.countryItemContainer}>
-      <div><button type="button" className={style.buttonItem} onClick={() => { navegate('/'); }}>Back</button></div>
-      <div className={style.countryItemDetails}>
+      <div>
+        <button
+          type="button"
+          className={`${style.buttonItem} ${themeMode}`}
+          onClick={() => { navegate('/'); }}
+        >
+          <p>
+            <FontAwesomeIcon icon={faArrowLeftLong} className={style.arrowLeft} />
+            Back
+          </p>
+        </button>
+      </div>
+      <div className={`${style.countryItemDetails} ${themeModeDetails}`}>
         <div className={style.countryFlag}>
           <img src={country.flag} alt={country.alt} />
         </div>
